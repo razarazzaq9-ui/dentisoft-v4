@@ -1,24 +1,36 @@
-<!-- dashboard.html -->
-<!DOCTYPE html>
-<html>
-<head>
-<title>Dashboard</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
+import { db } from "./firebase.js";
+import { collection, getDocs } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-<body>
+window.onload = async function () {
 
-<h1>DENTISOFT DASHBOARD</h1>
+    try {
 
-<div class="card">
-    <h3>Today's OPD</h3>
-    <h1 id="daily">0</h1>
-</div>
+        const snap = await getDocs(collection(db, "opd"));
 
-<button onclick="location.href='patients.html'">Patients</button>
-<button onclick="location.href='opd.html'">OPD Entry</button>
+        const today = new Date().toISOString().split("T")[0];
 
-<script type="module" src="js/dashboard.js"></script>
+        let count = 0;
 
-</body>
-</html>
+        snap.forEach(doc => {
+
+            const data = doc.data();
+
+            if (!data.date) return;
+
+            const visitDate = data.date.toString().split("T")[0];
+
+            if (visitDate === today) {
+                count++;
+            }
+        });
+
+        document.getElementById("daily").innerText = count;
+
+        console.log("Dashboard loaded, OPD today:", count);
+
+    } catch (error) {
+        console.error("Dashboard error:", error);
+        document.getElementById("daily").innerText = "Error";
+    }
+};
