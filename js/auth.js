@@ -1,3 +1,4 @@
+console.log("AUTH JS LOADED");
 import { auth } from "./firebase.js";
 import {
   signInWithEmailAndPassword
