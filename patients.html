@@ -1,0 +1,32 @@
+<!-- patients.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patients</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<h1>Patient Registration</h1>
+
+<div class="card">
+    <input id="name" placeholder="Name">
+    <input id="age" placeholder="Age">
+    <input id="phone" placeholder="Phone">
+
+    <button onclick="addPatient()">Save Patient</button>
+</div>
+
+<h3>Open Case File</h3>
+
+<input id="mrSearch" placeholder="MR#">
+<button onclick="loadCaseFile(mrSearch.value)">Open</button>
+
+<div id="case"></div>
+
+<script type="module" src="js/patients.js"></script>
+<script type="module" src="js/casefile.js"></script>
+
+</body>
+</html>
