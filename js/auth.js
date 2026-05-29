@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// This must be global because HTML uses onclick="login()"
+// 🌐 MUST be global for HTML onclick
 window.login = function () {
 
     let email = document.getElementById("email").value;
@@ -14,7 +14,6 @@ window.login = function () {
 
             alert("Login successful");
 
-            // redirect to dashboard
             window.location.href = "dashboard.html";
 
         })
